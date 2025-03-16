@@ -79,7 +79,12 @@
             loadQuestion();
         }
  const questions = [
-     { question: "\\mathcal{L}\\{1\\}", correct: "\\frac{1}{s}", options: ["s", "s^2", "\\frac{1}{s-1}", "\\frac{1}{s}", "\\frac{2}{s+1}", "\\frac{1}{s+2}"] },
+    { question: "\\mathcal{L}\\{6t^4\\}", correct: "\\frac{144}{s^5}", options: ["\\frac{144}{s^5}", "\\frac{24}{s^5}", "\\frac{120}{s^5}", "\\frac{144}{s^6}", "\\frac{60}{s^5}", "\\frac{144}{s^4}"] },
+            { question: "\\mathcal{L}\\{7e^{2t}\\}", correct: "\\frac{7}{s-2}", options: ["\\frac{7}{s-2}", "\\frac{7}{s+2}", "\\frac{7}{s-1}", "\\frac{7s}{s-2}", "\\frac{7}{s-3}", "\\frac{14}{s-2}"] },
+            { question: "\\mathcal{L}\\{9\\cos(5t)\\}", correct: "\\frac{9s}{s^2+25}", options: ["\\frac{9s}{s^2+25}", "\\frac{9}{s^2+25}", "\\frac{9s}{s^2+5}", "\\frac{5s}{s^2+25}", "\\frac{9s}{s^2+20}", "\\frac{9s}{s^2+30}"] },
+            { question: "\\mathcal{L}\\{4t^3 + 2e^{-3t}\\}", correct: "\\frac{24}{s^4} + \\frac{2}{s+3}", options: ["\\frac{24}{s^4} + \\frac{2}{s+3}", "\\frac{12}{s^4} + \\frac{2}{s+3}", "\\frac{24}{s^4} + \\frac{2}{s-3}", "\\frac{24}{s^3} + \\frac{2}{s+3}", "\\frac{24}{s^4} + \\frac{3}{s+3}", "\\frac{24}{s^4} + \\frac{2}{s+2}"] },
+            { question: "\\mathcal{L}\\{5e^{-t}\\sin(4t)\\}", correct: "\\frac{20}{(s+1)^2 + 16}", options: ["\\frac{20}{(s+1)^2 + 16}", "\\frac{4}{(s+1)^2 + 16}", "\\frac{20}{(s+1)^2 + 9}", "\\frac{20}{(s-1)^2 + 16}", "\\frac{20}{(s+2)^2 + 16}", "\\frac{15}{(s+1)^2 + 16}"] },   
+   { question: "\\mathcal{L}\\{1\\}", correct: "\\frac{1}{s}", options: ["s", "s^2", "\\frac{1}{s-1}", "\\frac{1}{s}", "\\frac{2}{s+1}", "\\frac{1}{s+2}"] },
             { question: "\\mathcal{L}\\{t\\}", correct: "\\frac{1}{s^2}", options: ["s", "\\frac{1}{s^2}", "s^3", "\\frac{1}{s+1}", "\\frac{2}{s^3}", "\\frac{3}{s^2}"] },
             { question: "\\mathcal{L}\\{t^2\\}", correct: "\\frac{2}{s^3}", options: ["\\frac{2}{s^3}", "\\frac{1}{s^3}", "\\frac{3}{s^2}", "\\frac{2}{s+3}", "\\frac{1}{s+2}", "\\frac{3}{s+1}"] },
             { question: "\\mathcal{L}\\{e^{t}\\}", correct: "\\frac{1}{s-1}", options: ["\\frac{1}{s-1}", "\\frac{1}{s+1}", "s-1", "\\frac{s}{s+1}", "\\frac{1}{s}", "\\frac{1}{s-2}"] },
