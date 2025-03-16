@@ -78,14 +78,14 @@
             document.getElementById("game-screen").style.display = "block";
             loadQuestion();
         }
-        const questions = [
-            { question: "\\mathcal{L}\\{1\\}", correct: "\\frac{1}{s}", options: ["\\frac{1}{s}", "s", "s^2", "\\frac{1}{s-1}", "\\frac{2}{s+1}", "\\frac{1}{s+2}"] },
+ const questions = [
+     { question: "\\mathcal{L}\\{1\\}", correct: "\\frac{1}{s}", options: ["s", "s^2", "\\frac{1}{s-1}", "\\frac{1}{s}", "\\frac{2}{s+1}", "\\frac{1}{s+2}"] },
             { question: "\\mathcal{L}\\{t\\}", correct: "\\frac{1}{s^2}", options: ["s", "\\frac{1}{s^2}", "s^3", "\\frac{1}{s+1}", "\\frac{2}{s^3}", "\\frac{3}{s^2}"] },
             { question: "\\mathcal{L}\\{t^2\\}", correct: "\\frac{2}{s^3}", options: ["\\frac{2}{s^3}", "\\frac{1}{s^3}", "\\frac{3}{s^2}", "\\frac{2}{s+3}", "\\frac{1}{s+2}", "\\frac{3}{s+1}"] },
             { question: "\\mathcal{L}\\{e^{t}\\}", correct: "\\frac{1}{s-1}", options: ["\\frac{1}{s-1}", "\\frac{1}{s+1}", "s-1", "\\frac{s}{s+1}", "\\frac{1}{s}", "\\frac{1}{s-2}"] },
             { question: "\\mathcal{L}\\{e^{-t}\\}", correct: "\\frac{1}{s+1}", options: ["\\frac{1}{s+1}", "\\frac{1}{s-1}", "s+1", "\\frac{1}{s+2}", "\\frac{s}{s-1}", "\\frac{1}{s+3}"] },
-            { question: "\\mathcal{L}\\{\\sin(t)\\}", correct: "\\frac{1}{s^2+1}", options: ["\\frac{1}{s^2+1}", "\\frac{s}{s^2+1}", "\\frac{1}{s-1}", "\\frac{1}{s^2}", "\\frac{1}{s+1}", "\\frac{2}{s^2+1}"] },
-            { question: "\\mathcal{L}\\{\\cos(2t)\\}", correct: "\\frac{s}{s^2+4}", options: ["\\frac{s}{s^2+4}", "\\frac{2}{s^2+4}", "\\frac{1}{s+2}", "\\frac{s}{s^2+1}", "\\frac{1}{s^2+2}", "\\frac{s}{s+4}"] },
+            { question: "\\mathcal{L}\\{\\sin(t)\\}", correct: "\\frac{1}{s^2+1}", options: ["\\frac{s}{s^2+1}", "\\frac{1}{s-1}","\\frac{1}{s^2+1}",  "\\frac{1}{s^2}", "\\frac{1}{s+1}", "\\frac{2}{s^2+1}"] },
+            { question: "\\mathcal{L}\\{\\cos(2t)\\}", correct: "\\frac{s}{s^2+4}", options: ["\\frac{2}{s^2+4}", "\\frac{1}{s+2}", "\\frac{s}{s^2+1}", "\\frac{1}{s^2+2}", "\\frac{s}{s^2+4}","\\frac{s}{s+4}"] },
             { question: "\\mathcal{L}\\{3t+2\\}", correct: "\\frac{3}{s^2} + \\frac{2}{s}", options: ["\\frac{3}{s^2} + \\frac{2}{s}", "\\frac{2}{s^2} + \\frac{3}{s}", "\\frac{3}{s} + \\frac{2}{s^2}", "\\frac{1}{s^2} + \\frac{3}{s}", "\\frac{3}{s^2} + \\frac{1}{s}", "\\frac{2}{s^2} + \\frac{1}{s}"] },
             { question: "\\mathcal{L}\\{e^{2t} - t\\}", correct: "\\frac{1}{s-2} - \\frac{1}{s^2}", options: ["\\frac{1}{s-2} - \\frac{1}{s^2}", "\\frac{1}{s-2} + \\frac{1}{s^2}", "\\frac{1}{s+2} - \\frac{1}{s^2}", "\\frac{1}{s-1} - \\frac{1}{s^2}", "\\frac{1}{s-2} - \\frac{2}{s^2}", "\\frac{1}{s-2} - \\frac{1}{s+2}"] },
             { question: "\\mathcal{L}\\{4e^{-t} + 5\\}", correct: "\\frac{4}{s+1} + \\frac{5}{s}", options: ["\\frac{4}{s+1} + \\frac{5}{s}", "\\frac{5}{s+1} + \\frac{4}{s}", "\\frac{4}{s-1} + \\frac{5}{s}", "\\frac{5}{s} - \\frac{4}{s+1}", "\\frac{4}{s+1} - \\frac{5}{s}", "\\frac{5}{s-1} + \\frac{4}{s}"] },
@@ -96,9 +96,8 @@
             { question: "\\mathcal{L}\\{e^{-t}\\sin(4t)\\}", correct: "\\frac{4}{(s+1)^2+16}", options: ["\\frac{4}{(s+1)^2+16}", "\\frac{4}{s^2+16}", "\\frac{4}{(s+1)^2+9}", "\\frac{4}{(s-1)^2+16}", "\\frac{4}{(s+1)^2+4}", "\\frac{3}{(s+1)^2+16}"] },
             { question: "\\mathcal{L}\\{8e^{-t}\\cos(5t)\\}", correct: "\\frac{8(s+1)}{(s+1)^2+25}", options: ["\\frac{8(s+1)}{(s+1)^2+25}", "\\frac{8(s-1)}{(s-1)^2+25}", "\\frac{8s}{s^2+25}", "\\frac{8(s+1)}{s^2+25}", "\\frac{8(s+1)}{(s+1)^2+16}", "\\frac{7(s+1)}{(s+1)^2+25}"] },
             { question: "\\mathcal{L}\\{3 + 2e^{4t}\\}", correct: "\\frac{3}{s} + \\frac{2}{s-4}", options: ["\\frac{3}{s} + \\frac{2}{s-4}", "\\frac{2}{s} + \\frac{3}{s-4}", "\\frac{3}{s-4} + \\frac{2}{s}", "\\frac{3}{s} - \\frac{2}{s-4}", "\\frac{3}{s+4} + \\frac{2}{s}", "\\frac{3}{s} + \\frac{2}{s+4}"] },
-            { question: "\\mathcal{L}\\{5t + 7e^{-2t}\\}", correct: "\\frac{5}{s^2} + \\frac{7}{s+2}", options: ["\\frac{5}{s^2} + \\frac{7}{s+2}", "\\frac{7}{s^2} + \\frac{5}{s+2}", "\\frac{5}{s^2} - \\frac{7}{s+2}", "\\frac{5}{s^2} + \\frac{7}{s-2}", "\\frac{5}{s^2} + \\frac{6}{s+2}", "\\frac{4}{s^2} + \\frac{7}{s+2}"] }
-        ];
-
+            { question: "\\mathcal{L}\\{5t + 7e^{-2t}\\}", correct: "\\frac{5}{s^2} + \\frac{7}{s+2}", options: ["\\frac{5}{s^2} + \\frac{7}{s+2}", "\\frac{7}{s^2} + \\frac{5}{s+2}", "\\frac{5}{s^2} - \\frac{7}{s+2}", "\\frac{5}{s^2} + \\frac{7}{s-2}", "\\frac{5}{s^2} + \\frac{6}{s+2}", "\\frac{4}{s^2} + \\frac{7}{s+2}"] },
+            ];
         function loadQuestion() {
             document.getElementById("next-button").style.display = "none";
             const index = Math.floor(Math.random() * questions.length);
@@ -109,17 +108,25 @@
             
             MathJax.Hub.Queue(["Typeset", MathJax.Hub, "question"]);
             
-            q.options.forEach(option => {
+            // Create a new options array with exactly 6 options: 5 incorrect + 1 correct
+            let allOptions = [...q.options];
+            allOptions = allOptions.filter(opt => opt !== q.correct); // Remove any duplicate correct answers
+            allOptions = allOptions.sort(() => Math.random() - 0.5).slice(0, 5); // Select 5 incorrect answers
+            allOptions.push(q.correct); // Add correct answer
+            allOptions.sort(() => Math.random() - 0.5); // Shuffle all options
+            
+            allOptions.forEach(option => {
                 const btn = document.createElement("button");
                 const mathSpan = document.createElement("span");
                 mathSpan.innerHTML = `\\[${option}\\]`;
                 btn.appendChild(mathSpan);
-                btn.setAttribute("data-option", option); // Store raw option text
+                btn.setAttribute("data-option", option);
                 btn.onclick = () => checkAnswer(btn, option, q.correct);
                 document.getElementById("options").appendChild(btn);
             });
             MathJax.Hub.Queue(["Typeset", MathJax.Hub, "options"]);
         }
+       
 
         function checkAnswer(button, selected, correct) {
             const buttons = document.querySelectorAll(".options button");
@@ -139,7 +146,6 @@
             if (selected === correct) {
                 score += 10;
                 document.getElementById("score-message").innerText = "Correct! +10";
-                button.classList.add("correct");
             } else {
                 score = Math.max(0, score - 5);
                 document.getElementById("score-message").innerText = "Incorrect. -5";
