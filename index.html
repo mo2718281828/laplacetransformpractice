@@ -24,11 +24,13 @@
             font-size: 1.2em;
             margin-bottom: 20px;
         }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
         .options button, .next-button, .start-button {
-            display: block;
-            width: 100%;
             padding: 10px;
-            margin: 5px 0;
             border: none;
             background: #007bff;
             color: white;
@@ -47,7 +49,7 @@
         }
         .score-message {
             font-weight: bold;
-            margin-top: 15px;
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -61,29 +63,37 @@
 
     <div class="container" id="game-screen" style="display: none;">
         <h2>Laplace Transform Review</h2>
-        <div class="question" id="question">Loading question...</div>
-        <div class="options" id="options"></div>
         <div class="score-message" id="score-message"></div>
         <div class="score">Score: <span id="score">0</span></div>
         <button class="next-button" id="next-button" style="display: none;" onclick="loadQuestion()">Next Question</button>
+        <div class="question" id="question">Loading question...</div>
+        <div class="options" id="options"></div>
     </div>
 
     <script>
+        let score = 0;
+
         function startGame() {
             document.getElementById("start-screen").style.display = "none";
             document.getElementById("game-screen").style.display = "block";
             loadQuestion();
         }
-
         const questions = [
-            { question: "L\\{1\\}", correct: "\\frac{1}{s}", options: ["\\frac{1}{s}", "s", "s^2", "\\frac{1}{s-1}"] },
-            { question: "L\\{t\\}", correct: "\\frac{1}{s^2}", options: ["s", "\\frac{1}{s^2}", "s^3", "\\frac{1}{s+1}"] },
-            { question: "L\\{e^{t}\\}", correct: "\\frac{1}{s-1}", options: ["\\frac{s}{s+1}", "\\frac{1}{s-1}", "\\frac{1}{s^2}", "e^s"] },
-            { question: "L\\{\\sin(t)\\}", correct: "\\frac{1}{s^2+1}", options: ["\\frac{s}{s^2+1}", "\\frac{1}{s^2+1}", "\\frac{s}{s-1}", "\\frac{1}{s+1}"] },
-            { question: "L\\{\\cos(t)\\}", correct: "\\frac{s}{s^2+1}", options: ["\\frac{s}{s^2+1}", "\\frac{1}{s}", "\\frac{s}{s-1}", "\\frac{1}{s^2+1}"] }
-        ];
 
-        let score = 0;
+          
+      
+     { question: "\\mathcal{L}\\{1\\}", correct: "\\frac{1}{s}", options: ["\\frac{1}{s}", "s", "s^2", "\\frac{1}{s-1}", "\\frac{2}{s+1}", "\\frac{1}{s+2}"] },
+            { question: "\\mathcal{L}\\{t\\}", correct: "\\frac{1}{s^2}", options: ["s", "\\frac{1}{s^2}", "s^3", "\\frac{1}{s+1}", "\\frac{2}{s^3}", "\\frac{3}{s^2}"] },
+            { question: "\\mathcal{L}\\{t^2\\}", correct: "\\frac{2}{s^3}", options: ["\\frac{2}{s^3}", "\\frac{1}{s^3}", "\\frac{3}{s^2}", "\\frac{2}{s+3}", "\\frac{1}{s+2}", "\\frac{3}{s+1}"] },
+            { question: "\\mathcal{L}\\{e^{t}\\}", correct: "\\frac{1}{s-1}", options: ["\\frac{1}{s-1}", "\\frac{1}{s+1}", "s-1", "\\frac{s}{s+1}", "\\frac{1}{s}", "\\frac{1}{s-2}"] },
+            { question: "\\mathcal{L}\\{e^{-t}\\}", correct: "\\frac{1}{s+1}", options: ["\\frac{1}{s+1}", "\\frac{1}{s-1}", "s+1", "\\frac{1}{s+2}", "\\frac{s}{s-1}", "\\frac{1}{s+3}"] },
+            { question: "\\mathcal{L}\\{\\sin(t)\\}", correct: "\\frac{1}{s^2+1}", options: ["\\frac{1}{s^2+1}", "\\frac{s}{s^2+1}", "\\frac{1}{s-1}", "\\frac{1}{s^2}", "\\frac{1}{s+1}", "\\frac{2}{s^2+1}"] },
+            { question: "\\mathcal{L}\\{\\cos(2t)\\}", correct: "\\frac{s}{s^2+4}", options: ["\\frac{s}{s^2+4}", "\\frac{2}{s^2+4}", "\\frac{1}{s+2}", "\\frac{s}{s^2+1}", "\\frac{1}{s^2+2}", "\\frac{s}{s+4}"] },
+            { question: "\\mathcal{L}\\{3t+2\\}", correct: "\\frac{3}{s^2} + \\frac{2}{s}", options: ["\\frac{3}{s^2} + \\frac{2}{s}", "\\frac{2}{s^2} + \\frac{3}{s}", "\\frac{3}{s} + \\frac{2}{s^2}", "\\frac{1}{s^2} + \\frac{3}{s}", "\\frac{3}{s^2} + \\frac{1}{s}", "\\frac{2}{s^2} + \\frac{1}{s}"] },
+            { question: "\\mathcal{L}\\{e^{2t} - t\\}", correct: "\\frac{1}{s-2} - \\frac{1}{s^2}", options: ["\\frac{1}{s-2} - \\frac{1}{s^2}", "\\frac{1}{s-2} + \\frac{1}{s^2}", "\\frac{1}{s+2} - \\frac{1}{s^2}", "\\frac{1}{s-1} - \\frac{1}{s^2}", "\\frac{1}{s-2} - \\frac{2}{s^2}", "\\frac{1}{s-2} - \\frac{1}{s+2}"] },
+            { question: "\\mathcal{L}\\{4e^{-t} + 5\\}", correct: "\\frac{4}{s+1} + \\frac{5}{s}", options: ["\\frac{4}{s+1} + \\frac{5}{s}", "\\frac{5}{s+1} + \\frac{4}{s}", "\\frac{4}{s-1} + \\frac{5}{s}", "\\frac{5}{s} - \\frac{4}{s+1}", "\\frac{4}{s+1} - \\frac{5}{s}", "\\frac{5}{s-1} + \\frac{4}{s}"] }
+            ];
+
         function loadQuestion() {
             document.getElementById("next-button").style.display = "none";
             const index = Math.floor(Math.random() * questions.length);
@@ -94,10 +104,12 @@
             
             MathJax.Hub.Queue(["Typeset", MathJax.Hub, "question"]);
             
-            const shuffledOptions = q.options.sort(() => Math.random() - 0.5);
-            shuffledOptions.forEach(option => {
+            q.options.forEach(option => {
                 const btn = document.createElement("button");
-                btn.innerHTML = `\\[${option}\\]`;
+                const mathSpan = document.createElement("span");
+                mathSpan.innerHTML = `\\[${option}\\]`;
+                btn.appendChild(mathSpan);
+                btn.setAttribute("data-option", option); // Store raw option text
                 btn.onclick = () => checkAnswer(btn, option, q.correct);
                 document.getElementById("options").appendChild(btn);
             });
@@ -106,9 +118,15 @@
 
         function checkAnswer(button, selected, correct) {
             const buttons = document.querySelectorAll(".options button");
+            let correctButton = null;
+            
             buttons.forEach(btn => {
-                if (btn.innerHTML.includes(correct)) {
+                if (btn.getAttribute("data-option") === correct) {
+                    correctButton = btn;
                     btn.classList.add("correct");
+                    const correctText = document.createElement("div");
+                    correctText.innerHTML = "<strong>CORRECT</strong>";
+                    btn.appendChild(correctText);
                 }
                 btn.disabled = true;
             });
@@ -116,12 +134,14 @@
             if (selected === correct) {
                 score += 10;
                 document.getElementById("score-message").innerText = "Correct! +10";
+                button.classList.add("correct");
             } else {
                 score = Math.max(0, score - 5);
                 document.getElementById("score-message").innerText = "Incorrect. -5";
                 button.classList.add("incorrect");
+                if (correctButton) correctButton.classList.add("correct");
             }
-            document.getElementById("score").innerText = score;
+            document.getElementById("score").innerText = score.toString();
             document.getElementById("next-button").style.display = "block";
             MathJax.Hub.Queue(["Typeset", MathJax.Hub, "score-message"]);
         }
