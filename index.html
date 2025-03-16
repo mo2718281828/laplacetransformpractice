@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laplace Transform Review Game</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" onload="mathJaxReady()"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,7 +24,7 @@
             font-size: 1.2em;
             margin-bottom: 20px;
         }
-        .options button {
+        .options button, .next-button, .start-button {
             display: block;
             width: 100%;
             padding: 10px;
@@ -36,7 +36,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .options button:hover {
+        .options button:hover, .next-button:hover, .start-button:hover {
             background: #0056b3;
         }
         .correct {
@@ -52,40 +52,48 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="start-screen">
+        <h2>Laplace Transform Review Game</h2>
+        <p>Test your knowledge of Laplace transforms by selecting the correct answer!</p>
+        <p><strong>Challenge:</strong> Reach a score of 200 points or more.</p>
+        <button class="start-button" onclick="startGame()">Start Game</button>
+    </div>
+
+    <div class="container" id="game-screen" style="display: none;">
         <h2>Laplace Transform Review</h2>
         <div class="question" id="question">Loading question...</div>
         <div class="options" id="options"></div>
         <div class="score-message" id="score-message"></div>
         <div class="score">Score: <span id="score">0</span></div>
+        <button class="next-button" id="next-button" style="display: none;" onclick="loadQuestion()">Next Question</button>
     </div>
 
     <script>
-        let mathJaxLoaded = false;
-        function mathJaxReady() {
-            mathJaxLoaded = true;
+        function startGame() {
+            document.getElementById("start-screen").style.display = "none";
+            document.getElementById("game-screen").style.display = "block";
             loadQuestion();
         }
 
         const questions = [
             { question: "L\\{1\\}", correct: "\\frac{1}{s}", options: ["\\frac{1}{s}", "s", "s^2", "\\frac{1}{s-1}"] },
             { question: "L\\{t\\}", correct: "\\frac{1}{s^2}", options: ["s", "\\frac{1}{s^2}", "s^3", "\\frac{1}{s+1}"] },
-            { question: "L\\{e^t\\}", correct: "\\frac{1}{s-1}", options: ["\\frac{s}{s+1}", "\\frac{1}{s-1}", "\\frac{1}{s^2}", "e^s"] },
+            { question: "L\\{e^{t}\\}", correct: "\\frac{1}{s-1}", options: ["\\frac{s}{s+1}", "\\frac{1}{s-1}", "\\frac{1}{s^2}", "e^s"] },
             { question: "L\\{\\sin(t)\\}", correct: "\\frac{1}{s^2+1}", options: ["\\frac{s}{s^2+1}", "\\frac{1}{s^2+1}", "\\frac{s}{s-1}", "\\frac{1}{s+1}"] },
-            { question: "L\\{\\cos(t)\\}", correct: "\\frac{s}{s^2+1}", options: ["\\frac{s}{s^2+1}", "\\frac{1}{s}", "\\frac{s}{s-1}", "\\frac{1}{s^2+1}"] },
-            { question: "L\\{2t + 3\\}", correct: "\\frac{2}{s^2} + \\frac{3}{s}", options: ["\\frac{2}{s^2} + \\frac{3}{s}", "\\frac{3}{s^2} + \\frac{2}{s}", "\\frac{1}{s^2} + \\frac{3}{s}", "\\frac{2}{s^2} + \\frac{1}{s}"] }
+            { question: "L\\{\\cos(t)\\}", correct: "\\frac{s}{s^2+1}", options: ["\\frac{s}{s^2+1}", "\\frac{1}{s}", "\\frac{s}{s-1}", "\\frac{1}{s^2+1}"] }
         ];
 
         let score = 0;
         function loadQuestion() {
-            if (!mathJaxLoaded) return;
+            document.getElementById("next-button").style.display = "none";
             const index = Math.floor(Math.random() * questions.length);
             const q = questions[index];
             document.getElementById("question").innerHTML = `\\[${q.question}\\]`;
             document.getElementById("options").innerHTML = "";
             document.getElementById("score-message").innerText = "";
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-
+            
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "question"]);
+            
             const shuffledOptions = q.options.sort(() => Math.random() - 0.5);
             shuffledOptions.forEach(option => {
                 const btn = document.createElement("button");
@@ -93,7 +101,7 @@
                 btn.onclick = () => checkAnswer(btn, option, q.correct);
                 document.getElementById("options").appendChild(btn);
             });
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "options"]);
         }
 
         function checkAnswer(button, selected, correct) {
@@ -114,8 +122,8 @@
                 button.classList.add("incorrect");
             }
             document.getElementById("score").innerText = score;
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-            setTimeout(loadQuestion, 2000);
+            document.getElementById("next-button").style.display = "block";
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "score-message"]);
         }
     </script>
 </body>
