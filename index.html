@@ -79,10 +79,7 @@
             loadQuestion();
         }
         const questions = [
-
-          
-      
-     { question: "\\mathcal{L}\\{1\\}", correct: "\\frac{1}{s}", options: ["\\frac{1}{s}", "s", "s^2", "\\frac{1}{s-1}", "\\frac{2}{s+1}", "\\frac{1}{s+2}"] },
+            { question: "\\mathcal{L}\\{1\\}", correct: "\\frac{1}{s}", options: ["\\frac{1}{s}", "s", "s^2", "\\frac{1}{s-1}", "\\frac{2}{s+1}", "\\frac{1}{s+2}"] },
             { question: "\\mathcal{L}\\{t\\}", correct: "\\frac{1}{s^2}", options: ["s", "\\frac{1}{s^2}", "s^3", "\\frac{1}{s+1}", "\\frac{2}{s^3}", "\\frac{3}{s^2}"] },
             { question: "\\mathcal{L}\\{t^2\\}", correct: "\\frac{2}{s^3}", options: ["\\frac{2}{s^3}", "\\frac{1}{s^3}", "\\frac{3}{s^2}", "\\frac{2}{s+3}", "\\frac{1}{s+2}", "\\frac{3}{s+1}"] },
             { question: "\\mathcal{L}\\{e^{t}\\}", correct: "\\frac{1}{s-1}", options: ["\\frac{1}{s-1}", "\\frac{1}{s+1}", "s-1", "\\frac{s}{s+1}", "\\frac{1}{s}", "\\frac{1}{s-2}"] },
@@ -92,7 +89,15 @@
             { question: "\\mathcal{L}\\{3t+2\\}", correct: "\\frac{3}{s^2} + \\frac{2}{s}", options: ["\\frac{3}{s^2} + \\frac{2}{s}", "\\frac{2}{s^2} + \\frac{3}{s}", "\\frac{3}{s} + \\frac{2}{s^2}", "\\frac{1}{s^2} + \\frac{3}{s}", "\\frac{3}{s^2} + \\frac{1}{s}", "\\frac{2}{s^2} + \\frac{1}{s}"] },
             { question: "\\mathcal{L}\\{e^{2t} - t\\}", correct: "\\frac{1}{s-2} - \\frac{1}{s^2}", options: ["\\frac{1}{s-2} - \\frac{1}{s^2}", "\\frac{1}{s-2} + \\frac{1}{s^2}", "\\frac{1}{s+2} - \\frac{1}{s^2}", "\\frac{1}{s-1} - \\frac{1}{s^2}", "\\frac{1}{s-2} - \\frac{2}{s^2}", "\\frac{1}{s-2} - \\frac{1}{s+2}"] },
             { question: "\\mathcal{L}\\{4e^{-t} + 5\\}", correct: "\\frac{4}{s+1} + \\frac{5}{s}", options: ["\\frac{4}{s+1} + \\frac{5}{s}", "\\frac{5}{s+1} + \\frac{4}{s}", "\\frac{4}{s-1} + \\frac{5}{s}", "\\frac{5}{s} - \\frac{4}{s+1}", "\\frac{4}{s+1} - \\frac{5}{s}", "\\frac{5}{s-1} + \\frac{4}{s}"] }
-            ];
+            { question: "\\mathcal{L}\\{2 + 4t\\}", correct: "\\frac{2}{s} + \\frac{4}{s^2}", options: ["\\frac{2}{s} + \\frac{4}{s^2}", "\\frac{4}{s} + \\frac{2}{s^2}", "\\frac{2}{s} + \\frac{3}{s^2}", "\\frac{2}{s+1} + \\frac{4}{s^2}", "\\frac{3}{s} + \\frac{4}{s^3}", "\\frac{2}{s-1} + \\frac{4}{s^2}"] },
+            { question: "\\mathcal{L}\\{5e^{-2t} + 6\\}", correct: "\\frac{5}{s+2} + \\frac{6}{s}", options: ["\\frac{5}{s+2} + \\frac{6}{s}", "\\frac{6}{s+2} + \\frac{5}{s}", "\\frac{5}{s-2} + \\frac{6}{s}", "\\frac{6}{s-2} + \\frac{5}{s+1}", "\\frac{5}{s+2} + \\frac{6}{s+1}", "\\frac{5}{s+2} - \\frac{6}{s}"] },
+            { question: "\\mathcal{L}\\{7e^{3t} + 9\\}", correct: "\\frac{7}{s-3} + \\frac{9}{s}", options: ["\\frac{7}{s-3} + \\frac{9}{s}", "\\frac{9}{s-3} + \\frac{7}{s}", "\\frac{7}{s+3} + \\frac{9}{s}", "\\frac{9}{s+3} + \\frac{7}{s}", "\\frac{7}{s-3} + \\frac{8}{s}", "\\frac{7}{s+3} - \\frac{9}{s}"] },
+            { question: "\\mathcal{L}\\{e^{2t}\\cos(3t)\\}", correct: "\\frac{s-2}{(s-2)^2+9}", options: ["\\frac{s-2}{(s-2)^2+9}", "\\frac{s+2}{(s+2)^2+9}", "\\frac{s-3}{(s-3)^2+9}", "\\frac{s}{s^2+9}", "\\frac{s-2}{(s-2)^2+4}", "\\frac{s-2}{(s+2)^2+9}"] },
+            { question: "\\mathcal{L}\\{e^{-t}\\sin(4t)\\}", correct: "\\frac{4}{(s+1)^2+16}", options: ["\\frac{4}{(s+1)^2+16}", "\\frac{4}{s^2+16}", "\\frac{4}{(s+1)^2+9}", "\\frac{4}{(s-1)^2+16}", "\\frac{4}{(s+1)^2+4}", "\\frac{3}{(s+1)^2+16}"] },
+            { question: "\\mathcal{L}\\{8e^{-t}\\cos(5t)\\}", correct: "\\frac{8(s+1)}{(s+1)^2+25}", options: ["\\frac{8(s+1)}{(s+1)^2+25}", "\\frac{8(s-1)}{(s-1)^2+25}", "\\frac{8s}{s^2+25}", "\\frac{8(s+1)}{s^2+25}", "\\frac{8(s+1)}{(s+1)^2+16}", "\\frac{7(s+1)}{(s+1)^2+25}"] },
+            { question: "\\mathcal{L}\\{3 + 2e^{4t}\\}", correct: "\\frac{3}{s} + \\frac{2}{s-4}", options: ["\\frac{3}{s} + \\frac{2}{s-4}", "\\frac{2}{s} + \\frac{3}{s-4}", "\\frac{3}{s-4} + \\frac{2}{s}", "\\frac{3}{s} - \\frac{2}{s-4}", "\\frac{3}{s+4} + \\frac{2}{s}", "\\frac{3}{s} + \\frac{2}{s+4}"] },
+            { question: "\\mathcal{L}\\{5t + 7e^{-2t}\\}", correct: "\\frac{5}{s^2} + \\frac{7}{s+2}", options: ["\\frac{5}{s^2} + \\frac{7}{s+2}", "\\frac{7}{s^2} + \\frac{5}{s+2}", "\\frac{5}{s^2} - \\frac{7}{s+2}", "\\frac{5}{s^2} + \\frac{7}{s-2}", "\\frac{5}{s^2} + \\frac{6}{s+2}", "\\frac{4}{s^2} + \\frac{7}{s+2}"] }
+        ];
 
         function loadQuestion() {
             document.getElementById("next-button").style.display = "none";
